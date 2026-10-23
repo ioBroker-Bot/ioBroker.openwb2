@@ -567,11 +567,7 @@ class Openwb2 extends utils.Adapter {
         };
 
         const [http, mqtt] = await Promise.all([
-            // list_components needs no chargepoint, battery, or any other hardware configured -
-            // it always returns a valid response listing whatever's present, even if every
-            // category is empty - so it's a safe, hardware-independent way to confirm the server
-            // is up and reachable (get_lastlivevaluesjson, used previously, was dropped from the
-            // new Python-based simpleAPI backend).
+            // list_components needs no hardware configured, so it's a safe, always-valid probe.
             this.client.read(cfg, { list_components: 1 }),
             testMqttConnection(mqttCfg, this),
         ]);
