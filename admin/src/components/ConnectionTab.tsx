@@ -26,7 +26,7 @@ interface ConnectionTabState {
 
 /**
  * A single Host/IP drives both the HTTP (write) side and the MQTT (read) side - verified against
- * real setups, it's always the same device. simpleapi.php's own path is a fixed constant (see
+ * real setups, it's always the same device. simpleAPI's own base path is a fixed constant (see
  * SIMPLE_API_BASE_PATH in src/lib/simpleApiClient.ts), not shown here at all. Authentication (for
  * either side) is real but rarely usable in practice - openWB has no GUI to set up simpleAPI
  * tokens/users or MQTT broker credentials, only filesystem-edit-only config files - so it's tucked

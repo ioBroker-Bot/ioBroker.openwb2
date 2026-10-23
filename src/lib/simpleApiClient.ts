@@ -2,11 +2,16 @@ import axios, { type AxiosRequestConfig } from 'axios';
 import { DEFAULT_REQUEST_TIMEOUT_MS, MAX_TIMER_MS } from './constants';
 
 /**
- * Path to simpleapi.php on the openWB webserver - part of openWB's own install layout, not
- * something that varies per install, so it's a hardcoded constant rather than a config field. If
- * this ever changes upstream, that's an adapter code update, not a per-user setting.
+ * Base path of openWB's simpleAPI on the openWB webserver - part of openWB's own install layout,
+ * not something that varies per install, so it's a hardcoded constant rather than a config field.
+ * If this ever changes upstream, that's an adapter code update, not a per-user setting.
+ *
+ * No `simpleapi.php` suffix - the new Python-based simpleAPI backend (openWB 2.3.0+) is served
+ * directly off this base path; the old PHP path still works there for third-party compatibility,
+ * but there's no reason to keep using it in an adapter we maintain ourselves. The HTTP contract
+ * (parameters, request/response shapes, auth) is otherwise unchanged between the two backends.
  */
-const SIMPLE_API_BASE_PATH = '/openWB/simpleAPI/simpleapi.php';
+const SIMPLE_API_BASE_PATH = '/openWB/simpleAPI/';
 
 /** Connection details needed to reach simpleapi.php - a subset of the full adapter config. */
 export interface SimpleApiConnectionConfig {

@@ -567,10 +567,12 @@ class Openwb2 extends utils.Adapter {
         };
 
         const [http, mqtt] = await Promise.all([
-            // get_lastlivevaluesjson reads one always-retained, ID-independent topic - unlike
-            // get_chargepoint_all, it can't hit a nonexistent-ID mosquitto_sub timeout (~8s on
-            // the real device, confirmed live) just because chargepoint 0 happens not to exist.
-            this.client.read(cfg, { get_lastlivevaluesjson: 1 }),
+            // list_components needs no chargepoint, battery, or any other hardware configured -
+            // it always returns a valid response listing whatever's present, even if every
+            // category is empty - so it's a safe, hardware-independent way to confirm the server
+            // is up and reachable (get_lastlivevaluesjson, used previously, was dropped from the
+            // new Python-based simpleAPI backend).
+            this.client.read(cfg, { list_components: 1 }),
             testMqttConnection(mqttCfg, this),
         ]);
 

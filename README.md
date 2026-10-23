@@ -23,7 +23,7 @@ controller live over MQTT, and lets you control charging via its `simpleAPI` HTT
 ### Reads via MQTT, writes via HTTP
 
 This adapter reads live data from openWB's MQTT broker (`openWB/simpleAPI/#`) and sends control commands via
-its `simpleAPI` HTTP interface (`simpleapi.php`). Both need to be reachable from your ioBroker host.
+its `simpleAPI` HTTP interface. Both need to be reachable from your ioBroker host.
 
 ### Requirements
 
