@@ -18,6 +18,10 @@ export default [
             // several CPU-minutes if a full `npm run lint` is ever run after `npm run build`.
             '**/build/**',
             '**/dist/**',
+            // Same failure mode as admin/build/ above - dev-server's `build-adapter react
+            // --watch` writes its bundle + sourcemap here (gitignored, but not excluded from
+            // lint), and linting that multi-MB minified index.js hangs for a similar reason.
+            '**/.watch/**',
             'admin/words.js',
             'admin/admin.d.ts',
             'admin/blockly.js',
